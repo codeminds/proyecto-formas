@@ -1,7 +1,6 @@
-﻿using GeoLib;
+﻿using Lib;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UI
 {
@@ -17,11 +16,12 @@ namespace UI
                 Console.Clear();
                 Console.WriteLine("AGREGAR FORMA");
                 Console.WriteLine("=============");
-                Console.WriteLine();
+                Console.WriteLine("");
 
                 Console.WriteLine("1- Cuadrado");
                 Console.WriteLine("2- Rectángulo");
-                Console.WriteLine("3- Círculo");
+                Console.WriteLine("3- Triangulo");
+                Console.WriteLine("4- Círculo");
                 Console.WriteLine("0- Regresar");
 
                 input = Console.ReadLine();
@@ -30,44 +30,48 @@ namespace UI
                     option = -1;
                 }
 
-                switch (option) 
+                switch (option)
                 {
                     case 1:
-                        if (AddSquareSubMenu(shapes)) 
+                        if (RenderAddSquareSubMenu(shapes))
                         {
-                            Console.WriteLine("Cuadrado agregado a lista de formas");
-                            Console.WriteLine("Presione Enter para continuar...");
+                            Console.WriteLine("Cuadrado agregado a la lista de formas. Presione ENTER para continuar...");
                             Console.ReadLine();
                         }
                         break;
                     case 2:
-                        if (AddRectangleSubMenu(shapes))
+                        if (RenderAddRectangleSubMenu(shapes))
                         {
-                            Console.WriteLine("Rectángulo agregado a lista de formas");
-                            Console.WriteLine("Presione Enter para continuar...");
+                            Console.WriteLine("Rectángulo agregado a la lista de formas. Presione ENTER para continuar...");
                             Console.ReadLine();
                         }
                         break;
                     case 3:
-                        if (AddCircleSubMenu(shapes))
+                        if (RenderAddTriangleSubMenu(shapes))
                         {
-                            Console.WriteLine("Círculo agregado a lista de formas");
-                            Console.WriteLine("Presione Enter para continuar...");
+                            Console.WriteLine("Triángulo Equilátero agregado a la lista de formas. Presione ENTER para continuar...");
+                            Console.ReadLine();
+                        }
+                        break;
+                    case 4:
+                        if (RenderAddCircleSubMenu(shapes))
+                        {
+                            Console.WriteLine("Círculo agregado a la lista de formas. Presione ENTER para continuar...");
                             Console.ReadLine();
                         }
                         break;
                     case 0:
                         break;
                     default:
-                        Console.WriteLine("Opción no válida. Presione Enter para continuar...");
+                        Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
                         Console.ReadLine();
                         break;
                 }
-
-            } while (option != 0);
+            }
+            while (option != 0);
         }
 
-        public static bool AddSquareSubMenu(List<Shape> shapes)
+        private static bool RenderAddSquareSubMenu(List<Shape> shapes)
         {
             float side;
             string input;
@@ -75,109 +79,132 @@ namespace UI
             Console.Clear();
             Console.WriteLine("AGREGAR CUADRADO");
             Console.WriteLine("================");
+            Console.WriteLine("");
 
-            Console.Write("Lado (cm): ");
+            Console.Write("Lados (cm): ");
             input = Console.ReadLine();
 
             if (!float.TryParse(input, out side))
             {
-                Console.WriteLine("Valor no válido. Presione Enter para continuar...");
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
             if (side <= 0)
             {
-                Console.WriteLine("Lado no puede ser menor a 1. Presione Enter para continuar...");
+                Console.WriteLine("Lado debe ser mayor a 0. Presion ENTER para continuar...");
                 Console.ReadLine();
                 return false;
-            } 
+            }
 
             shapes.Add(new Square(side));
             return true;
         }
 
-
-        public static bool AddRectangleSubMenu(List<Shape> shapes)
+        private static bool RenderAddRectangleSubMenu(List<Shape> shapes)
         {
-            float length;
-            float width;
+            float bas;
+            float height;
             string input;
 
             Console.Clear();
             Console.WriteLine("AGREGAR RECTÁNGULO");
-            Console.WriteLine("================");
-
-            Console.Write("Altura (cm): ");
-            input = Console.ReadLine();
-
-            if (!float.TryParse(input, out length))
-            {
-                Console.WriteLine("Altura no válida. Presione Enter para continuar...");
-                Console.ReadLine();
-                return false;
-            }
+            Console.WriteLine("==================");
+            Console.WriteLine("");
 
             Console.Write("Ancho (cm): ");
             input = Console.ReadLine();
 
-            if (!float.TryParse(input, out width))
+            if (!float.TryParse(input, out bas))
             {
-                Console.WriteLine("Ancho no válido. Presione Enter para continuar...");
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (length <= 0)
+            if (bas <= 0)
             {
-                Console.WriteLine("Altura no puede ser menor a 1. Presione Enter para continuar...");
+                Console.WriteLine("Ancho debe ser mayor a 0. Presion ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (width <= 0)
+            Console.Write("Alto (cm): ");
+            input = Console.ReadLine();
+
+            if (!float.TryParse(input, out height))
             {
-                Console.WriteLine("Ancho no puede ser menor a 1. Presione Enter para continuar...");
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (width == length)
+            if (bas <= 0)
             {
-                Console.WriteLine("Ancho y altura no pueden ser iguales. Presione Enter para continuar...");
+                Console.WriteLine("Alto debe ser mayor a 0. Presion ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            shapes.Add(new Rectangle(length, width));
+            shapes.Add(new Rectangle(bas, height));
             return true;
         }
 
+        private static bool RenderAddTriangleSubMenu(List<Shape> shapes)
+        {
+            float side;
+            string input;
 
+            Console.Clear();
+            Console.WriteLine("AGREGAR TRIÁNGULO EQUILÁTERO");
+            Console.WriteLine("============================");
+            Console.WriteLine("");
 
-        public static bool AddCircleSubMenu(List<Shape> shapes)
+            Console.Write("Lados (cm): ");
+            input = Console.ReadLine();
+
+            if (!float.TryParse(input, out side))
+            {
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
+                Console.ReadLine();
+                return false;
+            }
+
+            if (side <= 0)
+            {
+                Console.WriteLine("Lado debe ser mayor a 0. Presion ENTER para continuar...");
+                Console.ReadLine();
+                return false;
+            }
+
+            shapes.Add(new Triangle(side));
+            return true;
+        }
+
+        private static bool RenderAddCircleSubMenu(List<Shape> shapes)
         {
             float radio;
             string input;
 
             Console.Clear();
-            Console.WriteLine("AGREGAR CIRCULO");
-            Console.WriteLine("================");
+            Console.WriteLine("AGREGAR CÍRCULO");
+            Console.WriteLine("===============");
+            Console.WriteLine("");
 
             Console.Write("Radio (cm): ");
             input = Console.ReadLine();
 
-
             if (!float.TryParse(input, out radio))
             {
-                Console.WriteLine("Valor no válido. Presione Enter para continuar...");
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
             if (radio <= 0)
             {
-                Console.WriteLine("Radio no puede ser menor a 1. Presione Enter para continuar...");
+                Console.WriteLine("Radio debe ser mayor a 0. Presion ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GeoLib;
+using Lib;
 
 namespace UI
 {
@@ -18,6 +18,7 @@ namespace UI
                 Console.WriteLine("FORMAS GEOMÉTRICAS");
                 Console.WriteLine("==================");
                 Console.WriteLine("");
+
                 Console.WriteLine("1- Agregar Forma");
                 Console.WriteLine("2- Listar Formas");
                 Console.WriteLine("0- Salir");
@@ -28,7 +29,7 @@ namespace UI
                     option = -1;
                 }
 
-                try
+                try 
                 {
                     switch (option)
                     {
@@ -41,20 +42,18 @@ namespace UI
                         case 0:
                             break;
                         default:
-                            Console.WriteLine("Opción no válida");
-                            Console.WriteLine("Presione enter para continuar");
+                            Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
                             Console.ReadLine();
                             break;
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Sucedió un error inesperado");
-                    Console.WriteLine("Presione Enter para regresar al menú principal");
+                    Console.WriteLine("Sucedió un error inesperado. Presione ENTER para regresar al menú principal...");
                     Console.ReadLine();
                 }
-
-            } while (option != 0);
+            }
+            while (option != 0);
         }
     }
 }

@@ -2,11 +2,12 @@
 
 namespace Lib
 {
-    public class Square : Shape
+    public class Triangle : Shape
     {
         public float Side { get; private set; }
+        public float Height { get; private set; }
 
-        public Square(float side) : base("Cuadrado")
+        public Triangle (float side) : base("Triángulo Equilatero")
         {
             if (side <= 0)
             {
@@ -14,16 +15,18 @@ namespace Lib
             }
 
             this.Side = side;
+            this.Height = (float)Math.Sqrt(Math.Pow(side, 2) - Math.Pow(side /2, 2));
+
         }
 
         public override float GetArea()
         {
-            return this.Side * this.Side;
+            return this.Side * this.Height / 2;
         }
 
         public override float GetPerimeter()
         {
-            return this.Side * 4;
+            return this.Side * 3;
         }
     }
 }

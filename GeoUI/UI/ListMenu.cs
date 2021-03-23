@@ -1,7 +1,6 @@
-﻿using GeoLib;
+﻿using Lib;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UI
 {
@@ -17,7 +16,7 @@ namespace UI
                 Console.Clear();
                 Console.WriteLine("LISTA DE FORMAS");
                 Console.WriteLine("===============");
-                Console.WriteLine();
+                Console.WriteLine("");
 
                 if (shapes.Count > 0)
                 {
@@ -28,11 +27,10 @@ namespace UI
                 }
                 else
                 {
-                    Console.WriteLine("== LISTA VACÍA ==");
+                    Console.WriteLine("-- LISTA VACÍA --");
                 }
 
                 Console.WriteLine("0- Regresar");
-
 
                 input = Console.ReadLine();
                 if (!int.TryParse(input, out option))
@@ -42,17 +40,17 @@ namespace UI
 
                 if (option > 0 && option <= shapes.Count)
                 {
-                    RenderShapeSubMenu(shapes, shapes[option - 1]);
+                    RenderShapeSubmenu(shapes, shapes[option - 1]);
                 }
                 else if (option != 0)
                 {
-                    Console.WriteLine("Opción no válida. Presione Enter para continuar...");
+                    Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
                     Console.ReadLine();
                 }
             } while (option != 0);
         }
 
-        public static void RenderShapeSubMenu(List<Shape> shapes, Shape shape)
+        public static void RenderShapeSubmenu(List<Shape> shapes, Shape shape)
         {
             int option;
             string input;
@@ -61,14 +59,12 @@ namespace UI
             {
                 Console.Clear();
                 Console.WriteLine("FORMA: " + shape.Name.ToUpper());
-                Console.WriteLine("==============================");
-                Console.WriteLine();
+                Console.WriteLine("===============================");
+                Console.WriteLine("");
 
-                Console.WriteLine("1- Ver Área");
-                Console.WriteLine("2- Ver Perímetro");
-                Console.WriteLine("3- Borrar Forma");
+                Console.WriteLine("1- Info");
+                Console.WriteLine("2- Borrar");
                 Console.WriteLine("0- Regresar");
-
 
                 input = Console.ReadLine();
                 if (!int.TryParse(input, out option))
@@ -80,35 +76,37 @@ namespace UI
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("El " + shape.Name + " tiene un área de " + shape.GetArea());
-                        Console.WriteLine("Presione Enter para continuar...");
+                        Console.WriteLine("INFO: " + shape.Name.ToUpper());
+                        Console.WriteLine("===============================");
+                        Console.WriteLine("");
+
+                        Console.WriteLine("Área: " + shape.GetArea());
+                        Console.WriteLine("Perímetro: " + shape.GetPerimeter());
+                        Console.WriteLine("Presione ENTER para continuar...");
                         Console.ReadLine();
                         break;
                     case 2:
-                        Console.Clear();
-                        Console.WriteLine("El " + shape.Name + " tiene un perímetro de " + shape.GetPerimeter());
-                        Console.WriteLine("Presione Enter para continuar...");
-                        Console.ReadLine();
-                        break;
-                    case 3:
                         bool valid;
 
                         do
                         {
                             Console.Clear();
-                            Console.WriteLine("Está seguro que desea borrar esta forma?S/N");
-                            input = Console.ReadLine();
-                            input = input.ToLower();
+                            Console.WriteLine("BORRAR: " + shape.Name.ToUpper());
+                            Console.WriteLine("===============================");
+                            Console.WriteLine("");
 
-                            if (input == "s" || input == "sí" || input == "si")
+                            Console.WriteLine("Está seguro que desea borrar la forma? S/N");
+                            input = Console.ReadLine().ToLower();
+
+                            if (input == "s")
                             {
                                 shapes.Remove(shape);
                                 option = 0;
                                 valid = true;
                             }
-                            else if (input != "n" && input != "no")
+                            else if (input != "n")
                             {
-                                Console.WriteLine("Opción no válida. Presione Enter para continuar...");
+                                Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
                                 Console.ReadLine();
                                 valid = false;
                             }
@@ -121,10 +119,10 @@ namespace UI
                     case 0:
                         break;
                     default:
-                        Console.WriteLine("Opción no válida. Presione Enter para continuar...");
+                        Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
                         Console.ReadLine();
                         break;
-                }     
+                }
             } while (option != 0);
         }
     }

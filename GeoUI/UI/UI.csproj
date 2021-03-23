@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="GeoLib">
-      <HintPath>..\..\GeoLib\Lib\bin\Debug\netcoreapp3.1\GeoLib.dll</HintPath>
+    <Reference Include="Lib">
+      <HintPath>..\..\GeoLib\Lib\bin\Debug\netcoreapp3.1\Lib.dll</HintPath>
     </Reference>
   </ItemGroup>
 

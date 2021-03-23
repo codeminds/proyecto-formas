@@ -1,15 +1,15 @@
-﻿namespace GeoLib
+﻿namespace Lib
 {
     public class Shape
     {
         public string Name { get; private set; }
 
-        protected Shape(string name) 
+        protected Shape(string name)
         {
             this.Name = name;
         }
 
-        public virtual float GetArea()
+        public virtual float GetArea() 
         {
             return 0f;
         }

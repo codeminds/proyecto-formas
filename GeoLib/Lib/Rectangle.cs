@@ -1,36 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace GeoLib
+namespace Lib
 {
     public class Rectangle : Shape
     {
-        public float Length { get; private set; }
-        public float Width { get; private set; }
+        public float Base { get; private set; }
+        public float Height { get; private set; }
 
-        public Rectangle(float length, float width) : base("Rectángulo")
+        public Rectangle(float bas, float height) : base ("Rectángulo")
         {
-            if (length <= 0 || width <= 0)
+            if (bas <= 0)
             {
-                throw new Exception("Value of parameters length/side are not valid. Values must be greater than 0.");
+                throw new Exception("Value of paremeter base is not valid. Value must be greater than 0");
             }
 
-            if (length == width)
+            if (height <= 0)
             {
-                throw new Exception("Value of parameters length/side are not valid. Values can't be equal.");
+                throw new Exception("Value of paremeter height is not valid. Value must be greater than 0");
             }
 
-            this.Length = length;
-            this.Width = width;
+            if (height == bas)
+            {
+                throw new Exception("Value of paremeter height cannot be the same as value of parameter base");
+            }
+
+            this.Base = bas;
+            this.Height = height;
         }
 
         public override float GetArea()
         {
-            return this.Length * this.Width;
+            return this.Base * this.Height;
         }
 
         public override float GetPerimeter()
         {
-            return 2 * (this.Length + this.Width);
+            return this.Base * 2 + this.Height * 2;
         }
     }
 }
