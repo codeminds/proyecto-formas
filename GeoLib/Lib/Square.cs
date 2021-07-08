@@ -38,7 +38,7 @@ namespace Lib
                     //Línea pinta puntos en los extremos superior, inferior y laterales de la cuadrícula
                     //Todas las demás celdas están vacías
                     //Pinta punto en todas las celdas si está en la primera o última coordenada X
-                    //Pinta punto si está en la primera o última coordenada Y en todas las coordenadas X
+                    //Pinta punto si está en la primera o última coordenada Y en todas las demás coordenadas X
                     if (y == 0 || y == (this._quad - 1) || x == 0 || x == (this._quad - 1))
                     {
                         render += ". ";

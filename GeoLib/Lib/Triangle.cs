@@ -11,7 +11,6 @@ namespace Lib
         public float Side { get; private set; }
         public float Height { get; private set; }
 
-
         public Triangle(float side) : base("Triángulo Equilatero")
         {
             if (side <= 0)
