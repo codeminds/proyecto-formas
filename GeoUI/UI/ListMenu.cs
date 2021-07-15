@@ -1,6 +1,9 @@
 ﻿using Lib;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace UI
 {
@@ -16,7 +19,7 @@ namespace UI
                 Console.Clear();
                 Console.WriteLine("LISTA DE FORMAS");
                 Console.WriteLine("===============");
-                Console.WriteLine("");
+                Console.WriteLine();
 
                 if (shapes.Count > 0)
                 {
@@ -27,7 +30,7 @@ namespace UI
                 }
                 else
                 {
-                    Console.WriteLine("-- LISTA VACÍA --");
+                    Console.WriteLine("== LISTA VACÍA ==");
                 }
 
                 Console.WriteLine("0- Regresar");
@@ -50,7 +53,7 @@ namespace UI
             } while (option != 0);
         }
 
-        public static void RenderShapeSubmenu(List<Shape> shapes, Shape shape)
+        private static void RenderShapeSubmenu(List<Shape> shapes, Shape shape)
         {
             int option;
             string input;
@@ -59,10 +62,10 @@ namespace UI
             {
                 Console.Clear();
                 Console.WriteLine("FORMA: " + shape.Name.ToUpper());
-                Console.WriteLine("===============================");
-                Console.WriteLine("");
+                Console.WriteLine("=======" + RenderShapeNameLowerLine(shape.Name));
+                Console.WriteLine();
 
-                Console.WriteLine("1- Info");
+                Console.WriteLine("1- Información");
                 Console.WriteLine("2- Borrar");
                 Console.WriteLine("0- Regresar");
 
@@ -76,10 +79,7 @@ namespace UI
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("INFO: " + shape.Name.ToUpper());
-                        Console.WriteLine("===============================");
-                        Console.WriteLine("");
-
+                        Console.WriteLine(shape.Render());
                         Console.WriteLine("Área: " + shape.GetArea());
                         Console.WriteLine("Perímetro: " + shape.GetPerimeter());
                         Console.WriteLine("Presione ENTER para continuar...");
@@ -91,28 +91,27 @@ namespace UI
                         do
                         {
                             Console.Clear();
-                            Console.WriteLine("BORRAR: " + shape.Name.ToUpper());
-                            Console.WriteLine("===============================");
-                            Console.WriteLine("");
-
-                            Console.WriteLine("Está seguro que desea borrar la forma? S/N");
+                            Console.WriteLine("Está seguro que desea borrar esta forma? S/N");
                             input = Console.ReadLine().ToLower();
 
-                            if (input == "s")
+                            switch (input)
                             {
-                                shapes.Remove(shape);
-                                option = 0;
-                                valid = true;
-                            }
-                            else if (input != "n")
-                            {
-                                Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
-                                Console.ReadLine();
-                                valid = false;
-                            }
-                            else 
-                            {
-                                valid = true;
+                                case "s":
+                                case "si":
+                                case "sí":
+                                    shapes.Remove(shape);
+                                    option = 0;
+                                    valid = true;
+                                    break;
+                                case "n":
+                                case "no":
+                                    valid = true;
+                                    break;
+                                default:
+                                    Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
+                                    Console.ReadLine();
+                                    valid = false;
+                                    break;
                             }
                         } while (!valid);
                         break;
@@ -124,6 +123,18 @@ namespace UI
                         break;
                 }
             } while (option != 0);
+        }
+
+        private static string RenderShapeNameLowerLine(string shapeName)
+        {
+            string render = "";
+
+            for (int i = 0; i < shapeName.Length; i++)
+            {
+                render += "=";
+            }
+
+            return render;
         }
     }
 }

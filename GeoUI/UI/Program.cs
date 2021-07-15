@@ -17,8 +17,8 @@ namespace UI
                 Console.Clear();
                 Console.WriteLine("FORMAS GEOMÉTRICAS");
                 Console.WriteLine("==================");
-                Console.WriteLine("");
-
+                Console.WriteLine();
+                 
                 Console.WriteLine("1- Agregar Forma");
                 Console.WriteLine("2- Listar Formas");
                 Console.WriteLine("0- Salir");
@@ -29,7 +29,7 @@ namespace UI
                     option = -1;
                 }
 
-                try 
+                try
                 {
                     switch (option)
                     {
@@ -49,11 +49,10 @@ namespace UI
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Sucedió un error inesperado. Presione ENTER para regresar al menú principal...");
+                    Console.WriteLine("Error inesperado. Presion ENTER para regresar al menú principal...");
                     Console.ReadLine();
                 }
-            }
-            while (option != 0);
+            } while (option != 0);
         }
     }
 }

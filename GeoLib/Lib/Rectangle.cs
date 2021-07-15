@@ -2,7 +2,7 @@
 namespace Lib
 {
     public class Rectangle : Shape
-    { 
+    {
         public float Base { get; private set; }
         public float Height { get; private set; }
 
@@ -39,9 +39,21 @@ namespace Lib
 
         public override string Render()
         {
+            int height;
+            int bas;
             string render = "";
-            int height = this._quad;
-            int bas = this._quad + ((this._quad + 2) / 2);
+
+            //Orietación del rectángulo
+            if (this.Base > this.Height)
+            {
+                height = this._quad;
+                bas = this._quad + ((this._quad + 2) / 2);
+            }
+            else
+            {
+                height = this._quad + ((this._quad + 2) / 2);
+                bas = this._quad;
+            }
 
             //Matriz rectangular a partir del tamaño de cuadrícula configurado.
             //Base varía con una adición de la cuadrícula + 2 dividida entre 2.

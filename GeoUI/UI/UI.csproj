@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Lib">
-      <HintPath>..\..\GeoLib\Lib\bin\Debug\netcoreapp3.1\Lib.dll</HintPath>
+      <HintPath>..\..\GeoLib\Lib\bin\Debug\net5.0\Lib.dll</HintPath>
     </Reference>
   </ItemGroup>
 
