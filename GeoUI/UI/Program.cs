@@ -49,6 +49,8 @@ namespace UI
                 }
                 catch (Exception ex)
                 {
+                    //Loggear error en un archivo
+                    //Enseñarles a usar el programa sin Visual Studio
                     Console.WriteLine("Error inesperado. Presion ENTER para regresar al menú principal...");
                     Console.ReadLine();
                 }
