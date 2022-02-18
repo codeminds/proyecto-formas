@@ -1,31 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib
+﻿namespace GeoLib
 {
     public class Triangle : Shape
     {
         public float Side { get; private set; }
-        public float Height { get; private set; }
+        public float Height { get; private set; } 
 
         public Triangle(float side) : base("Triángulo Equilatero")
         {
             if (side <= 0)
             {
-                throw new Exception("Value of parameter base is not valid. Value must be greater than 0");
+                throw new Exception("Value of parameter side is not valid. Value must be greater than 0");
             }
 
             this.Side = side;
             this.Height = MathF.Sqrt(MathF.Pow(side, 2) - MathF.Pow(side / 2, 2));
         }
-
+        
         public override float GetArea()
         {
             return (this.Side * this.Height) / 2;
         }
+
         public override float GetPerimeter()
         {
             return this.Side * 3;
@@ -76,7 +71,7 @@ namespace Lib
                         }
                     }
                     //Lógica para el resto del triángulo
-                    else 
+                    else
                     {
                         //Línea pinta de forma diagonal sumando una coordenada Y hacia la derecha desde el centro por cada fila
                         //Línea pinta de forma diagonal restando una coordenada Y hacia la izquierda desde el centro por cada fila

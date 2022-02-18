@@ -1,8 +1,9 @@
-﻿namespace Lib
+﻿namespace GeoLib
 {
     public class Shape
     {
         public string Name { get; private set; }
+
         protected readonly int _quad;
 
         protected Shape(string name)

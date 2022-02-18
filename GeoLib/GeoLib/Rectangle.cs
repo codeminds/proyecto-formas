@@ -1,5 +1,4 @@
-﻿using System;
-namespace Lib
+﻿namespace GeoLib
 {
     public class Rectangle : Shape
     {
@@ -39,9 +38,9 @@ namespace Lib
 
         public override string Render()
         {
+            string render = "";
             int height;
             int bas;
-            string render = "";
 
             //Orietación del rectángulo
             if (this.Base > this.Height)
@@ -65,7 +64,7 @@ namespace Lib
                     //Todas las demás celdas están vacías
                     //Pinta punto en todas las celdas si está en la primera o última coordenada X
                     //Pinta punto si está en la primera o última coordenada Y en todas las coordenadas X
-                    if (y == 0 || y == (bas - 1) || x == 0 || x == (height - 1))
+                    if (y == 0 || y == bas - 1 || x == 0 || x == height - 1)
                     {
                         render += ". ";
                     }

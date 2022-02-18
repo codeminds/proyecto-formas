@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib
+﻿namespace GeoLib
 {
     //Descartado del proyecto
     public class Rhomboid : Shape
@@ -59,7 +53,7 @@ namespace Lib
                         render += ". ";
                     }
                     else
-                    { 
+                    {
                         render += "  ";
                     }
                 }

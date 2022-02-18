@@ -1,13 +1,8 @@
-﻿using Lib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GeoLib;
 
-namespace UI
+namespace GeoUI
 {
-    class AddMenu
+    internal class AddMenu
     {
         public static void RenderMenu(List<Shape> shapes)
         {
@@ -53,7 +48,7 @@ namespace UI
                     case 3:
                         if (RenderTriangleSubmenu(shapes))
                         {
-                            Console.WriteLine("Triángulo equilátero agregado. Presione ENTER para continuar...");
+                            Console.WriteLine("Triángulo agregado. Presione ENTER para continuar...");
                             Console.ReadLine();
                         }
                         break;
@@ -103,7 +98,7 @@ namespace UI
 
             if (side <= 0)
             {
-                Console.WriteLine("Lado no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Lado debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
@@ -114,8 +109,8 @@ namespace UI
 
         private static bool RenderRectangleSubmenu(List<Shape> shapes)
         {
-            float sideBase;
-            float sideHeight;
+            float bas;
+            float height;
             string input;
 
             Console.Clear();
@@ -126,16 +121,16 @@ namespace UI
             Console.Write("Base (cm): ");
             input = Console.ReadLine();
 
-            if (!float.TryParse(input, out sideBase))
+            if (!float.TryParse(input, out bas))
             {
                 Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (sideBase <= 0)
+            if (bas <= 0)
             {
-                Console.WriteLine("Base no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Base debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
@@ -143,60 +138,32 @@ namespace UI
             Console.Write("Altura (cm): ");
             input = Console.ReadLine();
 
-            if (!float.TryParse(input, out sideHeight))
+            
+            if (!float.TryParse(input, out height))
             {
                 Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (sideHeight <= 0)
+            if (height <= 0)
             {
-                Console.WriteLine("Altura no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Altura debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (sideHeight == sideBase)
+            if(bas == height)
             {
-                Console.WriteLine("Base no puede ser igual a altura. Presione ENTER para continuar...");
+                Console.WriteLine("Base no puede ser igual a altura. Presion ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
-
-            shapes.Add(new Rectangle(sideBase, sideHeight));
+           
+            shapes.Add(new Rectangle(bas, height));
             return true;
         }
-        private static bool RenderCircleSubmenu(List<Shape> shapes)
-        {
-            float radio;
-            string input;
 
-            Console.Clear();
-            Console.WriteLine("AGREGAR CÍRCULO");
-            Console.WriteLine("===============");
-            Console.WriteLine();
-
-            Console.Write("Radio (cm): ");
-            input = Console.ReadLine();
-
-            if (!float.TryParse(input, out radio))
-            {
-                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
-                Console.ReadLine();
-                return false;
-            }
-
-            if (radio <= 0)
-            {
-                Console.WriteLine("Radio no puede ser menor a 1. Presione ENTER para continuar...");
-                Console.ReadLine();
-                return false;
-            }
-
-            shapes.Add(new Circle(radio));
-            return true;
-        }
         private static bool RenderTriangleSubmenu(List<Shape> shapes)
         {
             float side;
@@ -219,12 +186,43 @@ namespace UI
 
             if (side <= 0)
             {
-                Console.WriteLine("Lado no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Lado debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
             shapes.Add(new Triangle(side));
+            return true;
+        }
+
+        private static bool RenderCircleSubmenu(List<Shape> shapes)
+        {
+            float radius;
+            string input;
+
+            Console.Clear();
+            Console.WriteLine("AGREGAR CÍRCULO");
+            Console.WriteLine("===============");
+            Console.WriteLine();
+
+            Console.Write("Radio (cm): ");
+            input = Console.ReadLine();
+
+            if (!float.TryParse(input, out radius))
+            {
+                Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
+                Console.ReadLine();
+                return false;
+            }
+
+            if (radius <= 0)
+            {
+                Console.WriteLine("Radio debe ser mayor a 0. Presione ENTER para continuar...");
+                Console.ReadLine();
+                return false;
+            }
+
+            shapes.Add(new Circle(radius));
             return true;
         }
 
@@ -251,7 +249,7 @@ namespace UI
 
             if (sideWidth <= 0)
             {
-                Console.WriteLine("Ancho no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Ancho debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
@@ -268,7 +266,7 @@ namespace UI
 
             if (sideHeight <= 0)
             {
-                Console.WriteLine("Alto no puede ser menor a 1. Presione ENTER para continuar...");
+                Console.WriteLine("Alto debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }

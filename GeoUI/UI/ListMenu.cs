@@ -1,10 +1,8 @@
-﻿using Lib;
-using System;
-using System.Collections.Generic;
+﻿using GeoLib;
 
-namespace UI
+namespace GeoUI
 {
-    class ListMenu
+    internal class ListMenu
     {
         public static void RenderMenu(List<Shape> shapes)
         {
@@ -31,7 +29,7 @@ namespace UI
                 }
 
                 Console.WriteLine("0- Regresar");
-
+                
                 input = Console.ReadLine();
                 if (!int.TryParse(input, out option))
                 {

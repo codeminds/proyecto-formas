@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Lib
+﻿namespace GeoLib
 {
     public class Square : Shape
     {
@@ -39,11 +37,11 @@ namespace Lib
                     //Todas las demás celdas están vacías
                     //Pinta punto en todas las celdas si está en la primera o última coordenada X
                     //Pinta punto si está en la primera o última coordenada Y en todas las demás coordenadas X
-                    if (y == 0 || y == (this._quad - 1) || x == 0 || x == (this._quad - 1))
+                    if (y == 0 || y == this._quad - 1 || x == 0 || x == this._quad - 1)
                     {
                         render += ". ";
                     }
-                    else 
+                    else
                     {
                         render += "  ";
                     }

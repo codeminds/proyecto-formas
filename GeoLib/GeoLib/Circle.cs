@@ -1,26 +1,27 @@
-﻿using System;
-
-namespace Lib
+﻿namespace GeoLib
 {
+    //Descartado del proyecto
     public class Circle : Shape
     {
-        public float Radio { get; private set; }
+        public float Radius { get; private set; }
+
         public float Diameter { get; private set; }
 
-        public Circle(float radio) : base("Círculo") 
+        public Circle(float radius) : base("Círculo")
         {
-            if (radio <= 0)
+
+            if(radius <= 0)
             {
-                throw new Exception("Value of parameter radio is not valid. Value must be greater than 0");
+                throw new Exception("Value of parameter radius is not valid. Value must be greater than 0");
             }
 
-            this.Radio = radio;
-            this.Diameter = radio * 2;
+            this.Radius = radius;
+            this.Diameter = radius * 2;
         }
 
         public override float GetArea()
         {
-            return MathF.PI * MathF.Pow(this.Radio, 2);
+            return MathF.PI * MathF.Pow(this.Radius, 2);
         }
 
         public override float GetPerimeter()
