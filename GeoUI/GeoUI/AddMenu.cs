@@ -7,7 +7,7 @@ namespace GeoUI
         public static void RenderMenu(List<Shape> shapes)
         {
             int option;
-            string input;
+            string? input;
 
             do
             {
@@ -79,7 +79,7 @@ namespace GeoUI
         private static bool RenderSquareSubmenu(List<Shape> shapes)
         {
             float side;
-            string input;
+            string? input;
 
             Console.Clear();
             Console.WriteLine("AGREGAR CUADRADO");
@@ -111,7 +111,7 @@ namespace GeoUI
         {
             float bas;
             float height;
-            string input;
+            string? input;
 
             Console.Clear();
             Console.WriteLine("AGREGAR RECTÁNGULO");
@@ -138,7 +138,6 @@ namespace GeoUI
             Console.Write("Altura (cm): ");
             input = Console.ReadLine();
 
-            
             if (!float.TryParse(input, out height))
             {
                 Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
@@ -153,25 +152,26 @@ namespace GeoUI
                 return false;
             }
 
-            if(bas == height)
+            if (bas == height)
             {
-                Console.WriteLine("Base no puede ser igual a altura. Presion ENTER para continuar...");
+                Console.WriteLine("Altura y base no pueden ser iguales. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
-           
+
             shapes.Add(new Rectangle(bas, height));
             return true;
+
         }
 
         private static bool RenderTriangleSubmenu(List<Shape> shapes)
         {
             float side;
-            string input;
+            string? input;
 
             Console.Clear();
-            Console.WriteLine("AGREGAR TRIÁNGULO EQUILÁTERO");
-            Console.WriteLine("============================");
+            Console.WriteLine("AGREGAR TRIÁNGULO");
+            Console.WriteLine("=================");
             Console.WriteLine();
 
             Console.Write("Lado (cm): ");
@@ -190,7 +190,7 @@ namespace GeoUI
                 Console.ReadLine();
                 return false;
             }
-
+            
             shapes.Add(new Triangle(side));
             return true;
         }
@@ -198,7 +198,7 @@ namespace GeoUI
         private static bool RenderCircleSubmenu(List<Shape> shapes)
         {
             float radius;
-            string input;
+            string? input;
 
             Console.Clear();
             Console.WriteLine("AGREGAR CÍRCULO");
@@ -228,9 +228,9 @@ namespace GeoUI
 
         private static bool RenderRhomboidSubmenu(List<Shape> shapes)
         {
-            string input;
-            float sideWidth;
-            float sideHeight;
+            string? input;
+            float width;
+            float height;
 
             Console.Clear();
             Console.WriteLine("AGREGAR ROMBOIDE");
@@ -240,14 +240,14 @@ namespace GeoUI
             Console.Write("Ancho (cm): ");
             input = Console.ReadLine();
 
-            if (!float.TryParse(input, out sideWidth))
+            if (!float.TryParse(input, out width))
             {
                 Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (sideWidth <= 0)
+            if (width <= 0)
             {
                 Console.WriteLine("Ancho debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
@@ -257,21 +257,21 @@ namespace GeoUI
             Console.Write("Alto (cm): ");
             input = Console.ReadLine();
 
-            if (!float.TryParse(input, out sideHeight))
+            if (!float.TryParse(input, out height))
             {
                 Console.WriteLine("Valor no válido. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            if (sideHeight <= 0)
+            if (height <= 0)
             {
                 Console.WriteLine("Alto debe ser mayor a 0. Presione ENTER para continuar...");
                 Console.ReadLine();
                 return false;
             }
 
-            shapes.Add(new Rhomboid(sideHeight, sideWidth));
+            shapes.Add(new Rhomboid(height, width));
             return true;
         }
     }

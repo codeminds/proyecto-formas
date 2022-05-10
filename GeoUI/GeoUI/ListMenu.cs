@@ -7,7 +7,7 @@ namespace GeoUI
         public static void RenderMenu(List<Shape> shapes)
         {
             int option;
-            string input;
+            string? input;
 
             do
             {
@@ -29,7 +29,7 @@ namespace GeoUI
                 }
 
                 Console.WriteLine("0- Regresar");
-                
+
                 input = Console.ReadLine();
                 if (!int.TryParse(input, out option))
                 {
@@ -51,13 +51,13 @@ namespace GeoUI
         private static void RenderShapeSubmenu(List<Shape> shapes, Shape shape)
         {
             int option;
-            string input;
+            string? input;
 
             do
             {
                 Console.Clear();
                 Console.WriteLine("FORMA: " + shape.Name.ToUpper());
-                Console.WriteLine("=======" + RenderShapeNameLowerLine(shape.Name));
+                Console.WriteLine("=======" + RenderShapeNameLowerLine(shape.Name.Length));
                 Console.WriteLine();
 
                 Console.WriteLine("1- Información");
@@ -73,42 +73,15 @@ namespace GeoUI
                 switch (option)
                 {
                     case 1:
-                        Console.Clear();
-                        Console.WriteLine(shape.Render());
-                        Console.WriteLine("Área: " + shape.GetArea());
-                        Console.WriteLine("Perímetro: " + shape.GetPerimeter());
-                        Console.WriteLine("Presione ENTER para continuar...");
-                        Console.ReadLine();
+                        RenderShapeInfoSubmenu(shape);
                         break;
                     case 2:
-                        bool valid;
-
-                        do
+                        if (RenderShapeDeleteSubmenu(shapes, shape))
                         {
-                            Console.Clear();
-                            Console.WriteLine("Está seguro que desea borrar esta forma? S/N");
-                            input = Console.ReadLine().ToLower();
-
-                            switch (input)
-                            {
-                                case "s":
-                                case "si":
-                                case "sí":
-                                    shapes.Remove(shape);
-                                    option = 0;
-                                    valid = true;
-                                    break;
-                                case "n":
-                                case "no":
-                                    valid = true;
-                                    break;
-                                default:
-                                    Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
-                                    Console.ReadLine();
-                                    valid = false;
-                                    break;
-                            }
-                        } while (!valid);
+                            Console.WriteLine(shape.Name + " removido. Presione ENTER para continuar...");
+                            Console.ReadLine();
+                            option = 0;
+                        }
                         break;
                     case 0:
                         break;
@@ -120,11 +93,49 @@ namespace GeoUI
             } while (option != 0);
         }
 
-        private static string RenderShapeNameLowerLine(string shapeName)
+        private static void RenderShapeInfoSubmenu(Shape shape)
+        {
+            Console.Clear();
+            Console.WriteLine(shape.Render());
+            Console.WriteLine("Área: " + shape.GetArea());
+            Console.WriteLine("Perímetro: " + shape.GetPerimeter());
+            Console.WriteLine("Presione ENTER para regresar...");
+            Console.ReadLine();
+        }
+
+        private static bool RenderShapeDeleteSubmenu(List<Shape> shapes, Shape shape)
+        {
+            string? input;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Está seguro que desea borrar esta forma? S/N");
+                input = Console.ReadLine()?.ToLower();
+
+                switch (input)
+                {
+                    case "s":
+                    case "si":
+                    case "sí":
+                        shapes.Remove(shape);
+                        return true;
+                    case "n":
+                    case "no":
+                        return false;
+                    default:
+                        Console.WriteLine("Opción no válida. Presione ENTER para continuar...");
+                        Console.ReadLine();
+                        break;
+                }
+            } while (true);
+        }
+
+        private static string RenderShapeNameLowerLine(int size)
         {
             string render = "";
 
-            for (int i = 0; i < shapeName.Length; i++)
+            for (int i = 0; i < size; i++)
             {
                 render += "=";
             }

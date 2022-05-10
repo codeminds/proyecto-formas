@@ -2,7 +2,7 @@
 using GeoUI;
 
 int option;
-string input;
+string? input;
 List<Shape> shapes = new List<Shape>();
 
 do
@@ -22,7 +22,6 @@ do
         option = -1;
     }
 
-
     try
     {
         switch (option)
@@ -41,10 +40,9 @@ do
                 break;
         }
     }
-    catch (Exception ex)
+    catch (Exception)
     {
-        //Loggearon error en un archivo
-        //Enseñarles a usar el programa sin Visual Studio
+        //Loggear error
         Console.WriteLine("Error inesperado. Presione ENTER para regresar al menú principal...");
         Console.ReadLine();
     }

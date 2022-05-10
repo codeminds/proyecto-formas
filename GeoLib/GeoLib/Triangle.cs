@@ -3,9 +3,9 @@
     public class Triangle : Shape
     {
         public float Side { get; private set; }
-        public float Height { get; private set; } 
+        public float Height { get; private set; }
 
-        public Triangle(float side) : base("Triángulo Equilatero")
+        public Triangle (float side) : base ("Triángulo")
         {
             if (side <= 0)
             {
@@ -15,7 +15,7 @@
             this.Side = side;
             this.Height = MathF.Sqrt(MathF.Pow(side, 2) - MathF.Pow(side / 2, 2));
         }
-        
+
         public override float GetArea()
         {
             return (this.Side * this.Height) / 2;
@@ -87,11 +87,9 @@
                         }
                     }
                 }
-
                 //Para mantener la cuadrícula, al terminar la repetición de las columnas, antes de empezar de una nueva fila se agrega un enter
-                render += "\n";
             }
-
+            
             return render;
         }
     }

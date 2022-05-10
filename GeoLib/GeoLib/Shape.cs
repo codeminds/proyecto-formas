@@ -24,7 +24,7 @@
 
         public virtual string Render()
         {
-            return "No Render Available For " + this.Name;
+            return "No Render Available";
         }
     }
 }

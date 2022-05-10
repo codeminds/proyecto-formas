@@ -1,11 +1,11 @@
 ﻿namespace GeoLib
 {
-    public class Rectangle : Shape
+    public class Rectangle :Shape
     {
         public float Base { get; private set; }
         public float Height { get; private set; }
 
-        public Rectangle(float bas, float height) : base("Rectángulo")
+        public Rectangle (float bas, float height) : base ("Rectángulo")
         {
             if (bas <= 0)
             {
@@ -17,9 +17,9 @@
                 throw new Exception("Value of parameter height is not valid. Value must be greater than 0");
             }
 
-            if (bas == height)
+            if (height == bas)
             {
-                throw new Exception("Value of parameter height cannot be the same as value of parameter bas");
+                throw new Exception("Value of parameters bas and height are not valid. Values must not be equal");
             }
 
             this.Base = bas;
@@ -39,19 +39,19 @@
         public override string Render()
         {
             string render = "";
-            int height;
             int bas;
+            int height;
 
             //Orietación del rectángulo
             if (this.Base > this.Height)
             {
-                height = this._quad;
                 bas = this._quad + ((this._quad + 2) / 2);
+                height = this._quad;
             }
             else
             {
-                height = this._quad + ((this._quad + 2) / 2);
                 bas = this._quad;
+                height = this._quad + ((this._quad + 2) / 2);
             }
 
             //Matriz rectangular a partir del tamaño de cuadrícula configurado.
