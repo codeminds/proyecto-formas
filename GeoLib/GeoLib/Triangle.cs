@@ -87,7 +87,9 @@
                         }
                     }
                 }
+
                 //Para mantener la cuadrícula, al terminar la repetición de las columnas, antes de empezar de una nueva fila se agrega un enter
+                render += "\n";
             }
             
             return render;
