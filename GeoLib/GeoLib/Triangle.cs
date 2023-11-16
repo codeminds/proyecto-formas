@@ -13,6 +13,12 @@
             }
 
             this.Side = side;
+
+            //Teorema de pitágoras hipotenusa^2 = cateto1^2 + cateto2^2
+            //Si parto el triángulo equilatero en el medio el lado exterior es la hipotenusa y la base será la mitad de esa hipotenusa
+            //Si h^2 = c1^2 + c2^2 entonces también c2^2 = h^2 - c1^2
+            //Si c2^2 le sacamos su raíz cuadrada obtenemos c2 que sería la altura del triángulo equilatero
+            //altura=c2 lado=h  altura = √(lado^2 - (lado / 2)^2)
             this.Height = MathF.Sqrt(MathF.Pow(side, 2) - MathF.Pow(side / 2, 2));
         }
 
